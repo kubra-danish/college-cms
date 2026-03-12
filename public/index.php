@@ -5,10 +5,20 @@ define('BASE_URL', '/college/public/index.php?url=');
 
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../app/models/UserModel.php';
+require_once __DIR__ . '/../app/models/NotesModel.php';
+require_once __DIR__ . '/../app/models/SyllabusModel.php';
+require_once __DIR__ . '/../app/models/AttendanceModel.php';
+require_once __DIR__ . '/../app/models/FacultyLeaveModel.php';
+
 require_once __DIR__ . '/../app/services/MailService.php';
+
 require_once __DIR__ . '/../app/controllers/AuthController.php';
 require_once __DIR__ . '/../app/controllers/AdminController.php';
 require_once __DIR__ . '/../app/controllers/ProfileController.php';
+require_once __DIR__ . '/../app/controllers/NotesController.php';
+require_once __DIR__ . '/../app/controllers/SyllabusController.php';
+require_once __DIR__ . '/../app/controllers/AttendanceController.php';
+require_once __DIR__ . '/../app/controllers/FacultyLeaveController.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -153,6 +163,85 @@ switch ($url) {
 
         $profileController = new ProfileController($db);
         $profileController->updateProfile();
+        break;
+    case 'attendance':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new AttendanceController($db))->index();
+        break;
+
+    case 'attendance-add':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new AttendanceController($db))->add();
+        break;
+
+    case 'attendance-edit':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new AttendanceController($db))->edit();
+        break;
+
+    case 'attendance-delete':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new AttendanceController($db))->delete();
+        break;
+
+    case 'faculty-leave':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new FacultyLeaveController($db))->index();
+        break;
+
+    case 'faculty-leave-add':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new FacultyLeaveController($db))->add();
+        break;
+
+    case 'faculty-leave-edit':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new FacultyLeaveController($db))->edit();
+        break;
+
+    case 'faculty-leave-delete':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new FacultyLeaveController($db))->delete();
+        break;
+    
+    case 'notes':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new NotesController($db))->index();
+        break;
+
+    case 'notes-add':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new NotesController($db))->add();
+        break;
+
+    case 'notes-edit':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new NotesController($db))->edit();
+        break;
+
+    case 'notes-delete':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new NotesController($db))->delete();
+        break;
+
+    case 'syllabus':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new SyllabusController($db))->index();
+        break;
+
+    case 'syllabus-add':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new SyllabusController($db))->add();
+        break;
+
+    case 'syllabus-edit':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new SyllabusController($db))->edit();
+        break;
+
+    case 'syllabus-delete':
+        if (!isset($_SESSION['user_id'])) redirectTo('login');
+        (new SyllabusController($db))->delete();
         break;
 
     case 'logout':

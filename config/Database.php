@@ -3,7 +3,7 @@ class Database {
     private $host = 'localhost';
     private $db_name = 'college_cms';
     private $username = 'root';
-    private $password = '';
+    private $password = 'root';
     private $conn;
 
     public function getConnection() {

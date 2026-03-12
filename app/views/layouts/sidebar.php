@@ -1,6 +1,14 @@
 <?php
 $currentPage = $_GET['url'] ?? 'dashboard';
 $role = strtolower($_SESSION['role'] ?? 'admin');
+
+$facultyMenuOpen = in_array($currentPage, [
+    'faculty',
+    'attendance', 'attendance-add', 'attendance-edit',
+    'faculty-leave', 'faculty-leave-add', 'faculty-leave-edit',
+    'notes', 'notes-add', 'notes-edit',
+    'syllabus', 'syllabus-add', 'syllabus-edit'
+]);
 ?>
 
 <div class="main-wrapper">
@@ -26,12 +34,38 @@ $role = strtolower($_SESSION['role'] ?? 'admin');
                 <span class="link-text">Students</span>
             </a>
 
-            <a href="/college/public/index.php?url=faculty" class="<?= $currentPage === 'faculty' ? 'active' : '' ?>">
-                <i class="bi bi-person-workspace"></i>
-                <span class="link-text">Faculty</span>
-            </a>
+            <div class="sidebar-dropdown">
+                <button type="button" class="sidebar-dropdown-btn <?= $facultyMenuOpen ? 'active' : '' ?>" onclick="toggleFacultySubmenu()">
+                    <div class="dropdown-left">
+                        <i class="bi bi-person-workspace"></i>
+                        <span class="link-text">Faculty</span>
+                    </div>
+                    <i class="bi bi-chevron-down dropdown-arrow <?= $facultyMenuOpen ? 'rotate' : '' ?>"></i>
+                </button>
 
-            <a href="#"><i class="bi bi-calendar-check-fill"></i><span class="link-text">Attendance</span></a>
+                <div id="facultySubmenu" class="sidebar-submenu <?= $facultyMenuOpen ? 'show' : '' ?>">
+                    <a href="/college/public/index.php?url=attendance" class="<?= str_starts_with($currentPage, 'attendance') ? 'active' : '' ?>">
+                        <i class="bi bi-calendar-check-fill"></i>
+                        <span class="link-text">Attendance</span>
+                    </a>
+
+                    <a href="/college/public/index.php?url=faculty-leave" class="<?= str_starts_with($currentPage, 'faculty-leave') ? 'active' : '' ?>">
+                        <i class="bi bi-calendar-x-fill"></i>
+                        <span class="link-text">Faculty Leave</span>
+                    </a>
+
+                    <a href="/college/public/index.php?url=notes" class="<?= str_starts_with($currentPage, 'notes') ? 'active' : '' ?>">
+                        <i class="bi bi-journal-text"></i>
+                        <span class="link-text">Notes</span>
+                    </a>
+
+                    <a href="/college/public/index.php?url=syllabus" class="<?= str_starts_with($currentPage, 'syllabus') ? 'active' : '' ?>">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                        <span class="link-text">Syllabus</span>
+                    </a>
+                </div>
+            </div>
+
             <a href="#"><i class="bi bi-cash-stack"></i><span class="link-text">Fees</span></a>
             <a href="#"><i class="bi bi-card-checklist"></i><span class="link-text">Results</span></a>
             <a href="#"><i class="bi bi-clock-history"></i><span class="link-text">Timetable</span></a>
@@ -76,3 +110,12 @@ $role = strtolower($_SESSION['role'] ?? 'admin');
         </div>
 
         <main class="page-content">
+
+<script>
+function toggleFacultySubmenu() {
+    const submenu = document.getElementById('facultySubmenu');
+    const arrow = document.querySelector('.dropdown-arrow');
+    submenu.classList.toggle('show');
+    arrow.classList.toggle('rotate');
+}
+</script>
