@@ -1,0 +1,216 @@
+/* ===== Public Pages: Home + Login ===== */
+
+:root {
+    --brand-primary: #0d6efd;
+    --brand-primary-dark: #0b5ed7;
+    --brand-dark: #1f2937;
+    --brand-muted: #6b7280;
+    --brand-light: #f4f7fb;
+    --brand-card: #ffffff;
+    --brand-warning-bg: #fff3cd;
+    --brand-warning-border: #ffc107;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    background: var(--brand-light);
+    color: #1f2937;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.hero-section {
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 25%),
+        linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark));
+    color: #fff;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    max-width: 650px;
+    opacity: 0.95;
+}
+
+.hero-card,
+.team-card,
+.warning-card,
+.portal-card,
+.feature-card {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    background: var(--brand-card);
+}
+
+.feature-card {
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 110, 253, 0.1);
+    color: var(--brand-primary);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: var(--brand-muted);
+    max-width: 720px;
+    margin: 0 auto 20px;
+}
+
+.team-card .lead-note {
+    font-size: 1rem;
+    color: var(--brand-dark);
+}
+
+.developer-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #eef1f5;
+}
+
+.developer-item:last-child {
+    border-bottom: none;
+}
+
+.developer-name {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.developer-role {
+    color: var(--brand-muted);
+    margin-bottom: 0;
+}
+
+.warning-card {
+    background: var(--brand-warning-bg);
+    border-left: 6px solid var(--brand-warning-border);
+}
+
+.warning-title {
+    font-weight: 700;
+}
+
+.portal-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 0;
+    background:
+        radial-gradient(circle at top left, rgba(13,110,253,0.10), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+}
+
+.portal-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 34px;
+}
+
+.portal-card.register-card {
+    max-width: 560px;
+}
+
+.portal-heading {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.portal-subtext {
+    color: var(--brand-muted);
+    margin-bottom: 24px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+    padding: 12px 14px;
+    border: 1px solid #d7dce3;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.15);
+    border-color: rgba(13,110,253,0.45);
+}
+
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-hero {
+    padding: 12px 22px;
+}
+
+.portal-links {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.public-footer {
+    background: #111827;
+    color: #fff;
+}
+
+.public-footer small {
+    opacity: 0.9;
+}
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .portal-card {
+        padding: 24px;
+    }
+}
