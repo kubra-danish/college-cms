@@ -15,7 +15,14 @@ value="<?= htmlspecialchars($record['title']) ?>" required>
 <div>
 <label>Upload New File</label>
 <input type="file" name="file">
-<p>Current File: <?= htmlspecialchars($record['file_name']) ?></p>
+<?php if (!empty($record['file_path'])): ?>
+    <p>
+        Current File:
+        <a href="/college/public/uploads/notes/<?= htmlspecialchars($record['file_path']) ?>" target="_blank">
+            <?= htmlspecialchars($record['file_path']) ?>
+        </a>
+    </p>
+<?php endif; ?>
 </div>
 
 <div class="full-width">
